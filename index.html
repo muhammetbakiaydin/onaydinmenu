@@ -1,85 +1,123 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Önaydın Peynircilik Menü</title>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600;1,700;1,900&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600;1,700;1,900&display=swap"
+    rel="stylesheet">
+
   <style>
     :root {
-      --brand: #c3311a; 
+      --brand: #c3311a;
       --brand-dark: #912211;
       --ink: #181b21;
       --muted: #5e6675;
       --line: #ded0bf;
-      --surface: #fdfbf8; 
+      --surface: #fdfbf8;
       --paper: #ffffff;
-      --accent: #dca360; 
+      --accent: #dca360;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html, body {
-      margin: 0; padding: 0;
-      background: #0d1117; 
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0d1117;
       color: var(--ink);
       font-family: 'Outfit', sans-serif;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
-    body { padding: 40px 16px; display: flex; justify-content: center; }
+    body {
+      padding: 40px 16px;
+      display: flex;
+      justify-content: center;
+    }
 
-    img { display: block; max-width: 100%; }
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
     .sheet-wrap {
-      display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; align-items: flex-start;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
       max-width: 100%;
     }
 
     .page {
-      width: 148mm; height: 210mm;
+      width: 148mm;
+      height: 210mm;
       background: var(--surface);
-      position: relative; overflow: hidden;
-      box-shadow: 0 35px 70px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
-      border-radius: 6px; 
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 35px 70px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
       page-break-after: always;
     }
 
     .page::after {
-      content: ""; position: absolute;
-      top: 0; left: 0; right: 0; height: 5px;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
       background: linear-gradient(90deg, var(--brand-dark), var(--brand), var(--accent));
       z-index: 10;
     }
+
     .page::before {
-      content: ""; position: absolute;
-      bottom: 0; left: 0; right: 0; height: 5px;
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
       background: var(--brand-dark);
       z-index: 10;
     }
 
     .page-inner {
-      position: relative; z-index: 1;
-      height: 100%; display: flex; flex-direction: column;
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       padding: 9mm 10mm 10mm;
     }
 
     .texture {
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: -1;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
       background-image: radial-gradient(var(--line) 0.5px, transparent 0.5px);
-      background-size: 8px 8px; opacity: 0.35;
+      background-size: 8px 8px;
+      opacity: 0.35;
     }
 
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 8px; 
+      margin-bottom: 8px;
       padding-bottom: 8px;
       border-bottom: 1.5px solid var(--line);
       flex: 0 0 auto;
@@ -162,7 +200,7 @@
       border-radius: 6px;
       background: #fff;
       padding: 3px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
     }
 
     .content {
@@ -184,7 +222,7 @@
       border: 1px solid rgba(222, 208, 191, 0.7);
       border-radius: 6px;
       padding: 8px 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.03);
     }
 
     .box-title {
@@ -245,7 +283,7 @@
       font-size: 11px;
       line-height: 1.4;
       font-weight: 400;
-      color: rgba(255,255,255,0.95);
+      color: rgba(255, 255, 255, 0.95);
     }
 
     .tag-row {
@@ -256,8 +294,8 @@
     }
 
     .tag {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 999px;
       padding: 3px 8px;
       font-size: 9.5px;
@@ -287,9 +325,9 @@
       background: var(--paper);
       border: 1px solid rgba(222, 208, 191, 0.7);
       border-radius: 6px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.03);
     }
-    
+
     .detail-box-content {
       padding: 8px 10px;
     }
@@ -323,7 +361,7 @@
       border-left: 4px solid var(--accent);
       padding: 8px 10px;
       border-radius: 6px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.03);
       margin-top: auto;
     }
 
@@ -341,8 +379,10 @@
     }
 
     .footer {
-      margin-top: 8px; /* Kısıldı */
-      padding-top: 8px; /* Kısıldı */
+      margin-top: 8px;
+      /* Kısıldı */
+      padding-top: 8px;
+      /* Kısıldı */
       border-top: 1px dashed var(--line);
       flex: 0 0 auto;
       text-align: center;
@@ -368,104 +408,268 @@
     }
 
     /* --- MOBILE RESPONSIVE & PHOTO UI --- */
-    .mobile-only { display: none; }
-    .cat-img { display: none; }
+    .mobile-only {
+      display: none;
+    }
+
+    .cat-img {
+      display: none;
+    }
 
     @media screen and (max-width: 768px) {
-      body { padding: 0; background: #FAF8F5; }
-      .sheet-wrap { gap: 0; }
-      
-      /* Hide the summary page on mobile to prevent duplicates */
-      .page.front { display: none; }
-      
-      .page {
-        width: 100%; height: auto; box-shadow: none; border-radius: 0; 
-        margin: 0; overflow: visible;
+      body {
+        padding: 0;
+        background: #FAF8F5;
       }
-      .page::before, .page::after { display: none; }
-      .texture { opacity: 0.15; }
 
-      .page-inner { padding: 32px 20px 48px; }
+      .sheet-wrap {
+        gap: 0;
+      }
+
+      /* Hide the summary page on mobile to prevent duplicates */
+      .page.front {
+        display: none;
+      }
+
+      .page {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+        overflow: visible;
+      }
+
+      .page::before,
+      .page::after {
+        display: none;
+      }
+
+      .texture {
+        opacity: 0.15;
+      }
+
+      .page-inner {
+        padding: 32px 20px 48px;
+      }
 
       .topbar {
-        flex-direction: column; align-items: center; border-bottom: none;
-        margin-bottom: 32px; padding-bottom: 0; text-align: center;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: none;
+        margin-bottom: 32px;
+        padding-bottom: 0;
+        text-align: center;
       }
-      .brand { align-items: center; justify-content: center; width: 100%; }
-      .text-logo { font-size: 34px; letter-spacing: 0.5px; }
-      .slogan { font-size: 22px; margin-top: 6px; }
-      .tagline-top { font-size: 16px; margin-top: 10px; }
-      
-      .contact { flex-direction: column; align-items: center; margin-top: 20px; gap: 6px;}
-      .contact-texts { align-items: center; }
-      .contact .label { font-size: 15px; }
-      .contact .phone { font-size: 28px; }
-      .contact-qr { width: 110px; height: 110px; margin-top: 16px; }
 
-      .content { display: block; flex: none; }
-      .detail-columns { display: flex; flex-direction: column; gap: 28px; }
-      .detail-stack { display: flex; flex-direction: column; gap: 28px; }
+      .brand {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .text-logo {
+        font-size: 34px;
+        letter-spacing: 0.5px;
+      }
+
+      .slogan {
+        font-size: 22px;
+        margin-top: 6px;
+      }
+
+      .tagline-top {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+
+      .contact {
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+        gap: 6px;
+      }
+
+      .contact-texts {
+        align-items: center;
+      }
+
+      .contact .label {
+        font-size: 15px;
+      }
+
+      .contact .phone {
+        font-size: 28px;
+      }
+
+      .contact-qr {
+        width: 110px;
+        height: 110px;
+        margin-top: 16px;
+      }
+
+      .content {
+        display: block;
+        flex: none;
+      }
+
+      .detail-columns {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+
+      .detail-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
 
       .detail-box {
-        padding: 0; border: none; border-radius: 20px; 
-        box-shadow: 0 12px 35px rgba(0,0,0,0.06); 
+        padding: 0;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.06);
         background: #fff;
         overflow: hidden;
       }
-      
+
       .cat-img {
-        display: block; width: 100%; height: 230px; object-fit: cover;
+        display: block;
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
       }
-      
-      .detail-box-content { padding: 24px; }
-      .box-title { font-size: 22px; margin-bottom: 12px; border-bottom-width: 3px; }
-      .detail-list li { font-size: 15px; margin-bottom: 12px; line-height: 1.5; color: #4a5568;}
-      .item-name { font-size: 16px; color: #1a202c; }
+
+      .detail-box-content {
+        padding: 24px;
+      }
+
+      .box-title {
+        font-size: 22px;
+        margin-bottom: 12px;
+        border-bottom-width: 3px;
+      }
+
+      .detail-list li {
+        font-size: 15px;
+        margin-bottom: 12px;
+        line-height: 1.5;
+        color: #4a5568;
+      }
+
+      .item-name {
+        font-size: 16px;
+        color: #1a202c;
+      }
 
       .note-box {
-        padding: 24px; border-radius: 16px; border-left: 6px solid var(--accent);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-top: 8px;
-        background: #FDF8F3; border-top: none; border-right: none; border-bottom: none;
+        padding: 24px;
+        border-radius: 16px;
+        border-left: 6px solid var(--accent);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+        margin-top: 8px;
+        background: #FDF8F3;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
       }
-      .note-box p { font-size: 16px; margin-bottom: 10px; line-height: 1.5; }
 
-      .mobile-only { display: block; }
-      
+      .note-box p {
+        font-size: 16px;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      .mobile-only {
+        display: block;
+      }
+
       .info-strip.mobile-only {
         background: linear-gradient(135deg, var(--brand-dark), var(--brand));
-        border-radius: 16px; padding: 28px; margin-top: 0; box-shadow: 0 15px 35px rgba(184, 52, 34, 0.25);
+        border-radius: 16px;
+        padding: 28px;
+        margin-top: 0;
+        box-shadow: 0 15px 35px rgba(184, 52, 34, 0.25);
       }
-      .info-strip.mobile-only .box-title { font-size: 20px; }
-      .info-strip.mobile-only p { font-size: 15px; margin-top: 10px; line-height: 1.6; }
-      .info-strip .tag { font-size: 13px; padding: 8px 14px; margin-top: 16px; }
+
+      .info-strip.mobile-only .box-title {
+        font-size: 20px;
+      }
+
+      .info-strip.mobile-only p {
+        font-size: 15px;
+        margin-top: 10px;
+        line-height: 1.6;
+      }
+
+      .info-strip .tag {
+        font-size: 13px;
+        padding: 8px 14px;
+        margin-top: 16px;
+      }
 
       .footer.mobile-only {
-        margin-top: 48px; padding-top: 32px; text-align: center; border-top: 1px dashed rgba(0,0,0,0.1);
+        margin-top: 48px;
+        padding-top: 32px;
+        text-align: center;
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
       }
-      .hours { font-size: 16px; margin-bottom: 6px; }
-      .address { font-size: 15px; margin-top: 10px; }
+
+      .hours {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      .address {
+        font-size: 15px;
+        margin-top: 10px;
+      }
     }
 
     @media print {
-      html, body {
+
+      html,
+      body {
         background: transparent !important;
         padding: 0 !important;
         margin: 0 !important;
         width: 148mm;
       }
-      .sheet-wrap { display: block; gap: 0; }
-      .page {
-        box-shadow: none !important; border-radius: 0 !important; border: none !important; margin: 0 !important; width: 148mm; height: 210mm; break-after: page;
+
+      .sheet-wrap {
+        display: block;
+        gap: 0;
       }
-      .texture { opacity: 0.2 !important; }
-      .mobile-only { display: none !important; }
-      .cat-img { display: none !important; }
+
+      .page {
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        border: none !important;
+        margin: 0 !important;
+        width: 148mm;
+        height: 210mm;
+        break-after: page;
+      }
+
+      .texture {
+        opacity: 0.2 !important;
+      }
+
+      .mobile-only {
+        display: none !important;
+      }
+
+      .cat-img {
+        display: none !important;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="sheet-wrap">
-    
+
     <!-- FRONT PAGE (A5 Masaüstü & Baskı Önizleme İçin) -->
     <section class="page front">
       <div class="texture"></div>
@@ -474,7 +678,7 @@
           <div class="brand">
             <h1 class="text-logo">Gurme Şef Cello Dayı</h1>
             <div class="tagline-top">20+ Yıllık Cello Dayı Tecrübesi İle</div>
-            <div class="slogan">“Kahvaltı Geleneği”</div>
+            <div class="slogan">“Asırlık Gurme Lezzet Geleneği”</div>
           </div>
 
           <div class="contact">
@@ -584,7 +788,7 @@
           <div class="brand">
             <h1 class="text-logo">Gurme Şef Cello Dayı</h1>
             <div class="tagline-top">20+ Yıllık Cello Dayı Tecrübesi İle</div>
-            <div class="slogan">“Kahvaltı Geleneği”</div>
+            <div class="slogan">“Asırlık Gurme Lezzet Geleneği”</div>
           </div>
 
           <div class="contact">
@@ -600,40 +804,56 @@
           <div class="detail-columns">
             <div class="detail-stack">
               <div class="detail-box">
-                <img class="cat-img" src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tostlar" />
+                <img class="cat-img"
+                  src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Tostlar" />
                 <div class="detail-box-content">
                   <h3 class="box-title">Tostlar</h3>
                   <ul class="detail-list">
-                    <li><span class="item-name">Kaşarlı:</span> Taze tost ekmeğinde bol kaşar peyniri ile hazırlanır.</li>
+                    <li><span class="item-name">Kaşarlı:</span> Taze tost ekmeğinde bol kaşar peyniri ile hazırlanır.
+                    </li>
                     <li><span class="item-name">Beyaz Peynirli:</span> Beyaz peynir ile sıcak servis edilir.</li>
-                    <li><span class="item-name">Sucuklu Kaşarlı:</span> Izgara sucuk ve eriyen kaşar peyniri ile hazırlanır.</li>
-                    <li><span class="item-name">Kavurmalı Kaşarlı:</span> Dana kavurma ve kaşar peyniri ile hazırlanır.</li>
+                    <li><span class="item-name">Sucuklu Kaşarlı:</span> Izgara sucuk ve eriyen kaşar peyniri ile
+                      hazırlanır.</li>
+                    <li><span class="item-name">Kavurmalı Kaşarlı:</span> Dana kavurma ve kaşar peyniri ile hazırlanır.
+                    </li>
                   </ul>
                 </div>
               </div>
 
               <div class="detail-box">
-                <img class="cat-img" src="https://images.unsplash.com/photo-1619096252214-ef06c45683e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sandviçler" />
+                <img class="cat-img"
+                  src="https://images.unsplash.com/photo-1619096252214-ef06c45683e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Sandviçler" />
                 <div class="detail-box-content">
                   <h3 class="box-title">Sandviçler</h3>
                   <ul class="detail-list">
-                    <li><span class="item-name">Geleneksel:</span> Beyaz peynir, haşlanmış yumurta, acuka, zeytin ezmesi, domates ve salatalık ile hazırlanır.</li>
-                    <li><span class="item-name">Spesiyal:</span> Kaşar, çeçil peyniri, dana jambon, dana salam, hindi füme, haşlanmış yumurta, zeytin ezmesi ve muhammara içerir.</li>
-                    <li><span class="item-name">Gurme:</span> Tulum ve çoban peyniri, tereyağı ve bal ile hazırlanır.</li>
-                    <li><span class="item-name">Bal Kaymak:</span> Tatlı sandviç olarak bal ve kaymak ile hazırlanır.</li>
+                    <li><span class="item-name">Geleneksel:</span> Beyaz peynir, haşlanmış yumurta, acuka, zeytin
+                      ezmesi, domates ve salatalık ile hazırlanır.</li>
+                    <li><span class="item-name">Spesiyal:</span> Kaşar, çeçil peyniri, dana jambon, dana salam, hindi
+                      füme, haşlanmış yumurta, zeytin ezmesi ve muhammara içerir.</li>
+                    <li><span class="item-name">Gurme:</span> Tulum ve çoban peyniri, tereyağı ve bal ile hazırlanır.
+                    </li>
+                    <li><span class="item-name">Bal Kaymak:</span> Tatlı sandviç olarak bal ve kaymak ile hazırlanır.
+                    </li>
                   </ul>
                 </div>
               </div>
 
               <div class="detail-box">
-                <img class="cat-img" src="https://images.unsplash.com/photo-1590412200988-a436970781fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sıcaklar" />
+                <img class="cat-img"
+                  src="https://images.unsplash.com/photo-1590412200988-a436970781fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Sıcaklar" />
                 <div class="detail-box-content">
                   <h3 class="box-title">Sıcaklar</h3>
                   <ul class="detail-list">
-                    <li><span class="item-name">Menemen Sade:</span> Domates, biber, tereyağı ve yumurta ile hazırlanır.</li>
+                    <li><span class="item-name">Menemen Sade:</span> Domates, biber, tereyağı ve yumurta ile hazırlanır.
+                    </li>
                     <li><span class="item-name">Menemen Kaşarlı:</span> Klasik menemen üzerine bol kaşar eklenir.</li>
-                    <li><span class="item-name">Menemen Kavurmalı:</span> Klasik menemen dana kavurma ile hazırlanır.</li>
-                    <li><span class="item-name">Menemen Sucuklu:</span> Sıcak menemen içine sucuk eklenerek hazırlanır.</li>
+                    <li><span class="item-name">Menemen Kavurmalı:</span> Klasik menemen dana kavurma ile hazırlanır.
+                    </li>
+                    <li><span class="item-name">Menemen Sucuklu:</span> Sıcak menemen içine sucuk eklenerek hazırlanır.
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -641,27 +861,36 @@
 
             <div class="detail-stack">
               <div class="detail-box">
-                <img class="cat-img" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Makarnalar" />
+                <img class="cat-img"
+                  src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Makarnalar" />
                 <div class="detail-box-content">
                   <h3 class="box-title">Makarnalar</h3>
                   <ul class="detail-list">
-                    <li><span class="item-name">Anne Makarnası Sade Salçalı:</span> Ev usulü salçalı sos ile hazırlanır.</li>
-                    <li><span class="item-name">Acılı Arrabbiata Soslu:</span> Hafif acılı domates bazlı sos ile hazırlanır.</li>
+                    <li><span class="item-name">Anne Makarnası Sade Salçalı:</span> Ev usulü salçalı sos ile hazırlanır.
+                    </li>
+                    <li><span class="item-name">Acılı Arrabbiata Soslu:</span> Hafif acılı domates bazlı sos ile
+                      hazırlanır.</li>
                     <li><span class="item-name">Bolonez Soslu:</span> Kıymalı bolonez sos ile servis edilir.</li>
                     <li><span class="item-name">Fettuccine Alfredo:</span> Krema bazlı yumuşak sos ile hazırlanır.</li>
-                    <li><span class="item-name">Kıymalı Mantı:</span> Geleneksel kıymalı mantı olarak servis edilir.</li>
+                    <li><span class="item-name">Kıymalı Mantı:</span> Geleneksel kıymalı mantı olarak servis edilir.
+                    </li>
                   </ul>
                 </div>
               </div>
 
               <div class="detail-box">
-                <img class="cat-img" src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gözlemeler" />
+                <img class="cat-img"
+                  src="https://images.unsplash.com/photo-1509358271058-acd22cc93898?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  alt="Gözlemeler" />
                 <div class="detail-box-content">
                   <h3 class="box-title">Gözlemeler</h3>
                   <ul class="detail-list">
-                    <li><span class="item-name">Peynirli:</span> İnce açılmış hamur içinde peynir dolgusu ile hazırlanır.</li>
+                    <li><span class="item-name">Peynirli:</span> İnce açılmış hamur içinde peynir dolgusu ile
+                      hazırlanır.</li>
                     <li><span class="item-name">Patatesli:</span> Baharatlı patates harcı ile hazırlanır.</li>
-                    <li><span class="item-name">Patatesli Kaşarlı:</span> Patates harcı ve kaşar peyniri ile hazırlanır.</li>
+                    <li><span class="item-name">Patatesli Kaşarlı:</span> Patates harcı ve kaşar peyniri ile hazırlanır.
+                    </li>
                     <li><span class="item-name">Kaşarlı:</span> Bol kaşarlı klasik gözleme seçeneğidir.</li>
                     <li><span class="item-name">Sucuklu Kaşarlı:</span> Sucuk ve kaşar ile hazırlanır.</li>
                     <li><span class="item-name">Kavurmalı Kaşarlı:</span> Dana kavurma ve kaşar ile hazırlanır.</li>
@@ -705,4 +934,5 @@
     </section>
   </div>
 </body>
+
 </html>
