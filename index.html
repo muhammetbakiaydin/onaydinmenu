@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Önaydın Peynircilik Menü</title>
+  <style>
+    :root {
+      --brand: #de6a5b;
+      --brand-dark: #cf5a4b;
+      --ink: #4c5564;
+      --muted: #667180;
+      --line: #ef9d90;
+      --paper: #ffffff;
+      --soft: #fff8f6;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: #ededed;
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      padding: 16px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .sheet-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .page {
+      width: 148mm;
+      height: 210mm;
+      background: var(--paper);
+      border: 1px solid #e6e6e6;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+      page-break-after: always;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 7mm;
+      background: var(--brand-dark);
+      z-index: 0;
+    }
+
+    .page-inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 8mm 7mm 10mm;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 4mm;
+      align-items: start;
+      margin-bottom: 4px;
+      flex: 0 0 auto;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+
+    .brand-logo {
+      width: 34mm;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 1.5mm;
+    }
+
+    .tagline-top {
+      margin-top: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 3.8mm;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.02;
+      color: #5f6771;
+      text-align: center;
+    }
+
+    .slogan {
+      margin-top: 0.4mm;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 4.7mm;
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1.02;
+      color: #5f6771;
+      text-align: center;
+    }
+
+    .contact {
+      text-align: right;
+      padding-top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+
+    .contact .label {
+      margin: 0;
+      font-size: 12px;
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: 0.25px;
+      color: #46505f;
+      text-transform: uppercase;
+    }
+
+    .contact .phone {
+      margin: 1.2mm 0 0;
+      font-size: 20px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.45px;
+      color: var(--brand-dark);
+    }
+
+    .contact-qr {
+      margin-top: 3.2mm;
+      width: 25mm;
+      height: 25mm;
+      object-fit: contain;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: #fff;
+      padding: 1.1mm;
+    }
+
+    .content {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+
+    .box {
+      border: 1.4px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fffaf8 100%);
+      padding: 5px 7px 6px;
+    }
+
+    .box-title {
+      margin: 0 0 4px;
+      font-size: 11px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: 0.25px;
+      color: var(--brand-dark);
+      text-transform: uppercase;
+    }
+
+    .menu-list,
+    .detail-list {
+      margin: 0;
+      padding: 0 0 0 15px;
+    }
+
+    .menu-list li {
+      margin: 0 0 2px;
+      font-size: 10.6px;
+      line-height: 1.24;
+      font-weight: 700;
+      color: #586372;
+    }
+
+    .info-strip {
+      border: 1.4px solid var(--line);
+      background: linear-gradient(135deg, rgba(222, 106, 91, 0.08) 0%, #fff 58%);
+      padding: 5px 7px 6px;
+    }
+
+    .info-strip p {
+      margin: 0;
+      font-size: 9.8px;
+      line-height: 1.28;
+      font-weight: 700;
+      color: #5f6874;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 5px;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 2px 6px;
+      font-size: 8px;
+      line-height: 1.1;
+      font-weight: 800;
+      color: var(--brand-dark);
+      background: var(--soft);
+      text-transform: uppercase;
+      letter-spacing: 0.15px;
+    }
+
+    .detail-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    .detail-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-height: 0;
+    }
+
+    .detail-box {
+      border: 1.4px solid var(--line);
+      background: linear-gradient(180deg, #ffffff 0%, #fffaf8 100%);
+      padding: 5px 6px 6px;
+    }
+
+    .detail-box .box-title {
+      font-size: 10.5px;
+      margin-bottom: 3px;
+    }
+
+    .detail-list li {
+      margin: 0 0 2px;
+      font-size: 8.55px;
+      line-height: 1.18;
+      color: #616c78;
+      font-weight: 700;
+    }
+
+    .detail-list li:last-child,
+    .menu-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-name {
+      font-weight: 900;
+      color: #4f5967;
+    }
+
+    .note-box {
+      border: 1.4px solid var(--line);
+      background: linear-gradient(180deg, #fffefe 0%, #fff5f3 100%);
+      padding: 5px 6px;
+    }
+
+    .note-box p {
+      margin: 0 0 2px;
+      font-size: 8.7px;
+      line-height: 1.16;
+      color: #636e7a;
+      font-weight: 800;
+    }
+
+    .note-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .footer {
+      margin-top: 5px;
+      padding-top: 4px;
+      border-top: 1.4px solid var(--line);
+      flex: 0 0 auto;
+    }
+
+    .hours,
+    .address {
+      margin: 0;
+      font-size: 9.2px;
+      line-height: 1.16;
+      font-weight: 900;
+    }
+
+    .hours {
+      color: var(--brand-dark);
+    }
+
+    .address {
+      color: #4e5d6b;
+      margin-top: 2px;
+    }
+
+    @page {
+      size: A5 portrait;
+      margin: 0;
+    }
+
+    @media screen and (max-width: 1100px) {
+      .sheet-wrap {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media print {
+      html,
+      body {
+        width: 148mm;
+        background: #fff;
+      }
+
+      body {
+        padding: 0;
+      }
+
+      .sheet-wrap {
+        display: block;
+      }
+
+      .page {
+        width: 148mm;
+        height: 210mm;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        break-after: page;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sheet-wrap">
+    <section class="page front">
+      <div class="page-inner">
+        <div class="topbar">
+          <div class="brand">
+            <img class="brand-logo" src="https://hizliresim.net/get/T52q5R.png?v=1540443985" alt="Önaydın Peynircilik logo" />
+            <div class="tagline-top">20+ Yıllık Cello Dayı Tecrübesi İle</div>
+            <div class="slogan">“Kahvaltı Geleneği”</div>
+          </div>
+
+          <div class="contact">
+            <p class="label">Alo Paket</p>
+            <p class="phone">0538 685 99 99</p>
+            <img class="contact-qr" src="https://hizliresim.net/get/4AmNlY.jpg" alt="WhatsApp ve arama QR" />
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="grid-2">
+            <div class="box">
+              <h3 class="box-title">Tostlar</h3>
+              <ul class="menu-list">
+                <li>Kaşarlı</li>
+                <li>Beyaz Peynirli</li>
+                <li>Sucuklu Kaşarlı</li>
+                <li>Kavurmalı Kaşarlı</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h3 class="box-title">Sıcaklar</h3>
+              <ul class="menu-list">
+                <li>Menemen Sade</li>
+                <li>Menemen Kaşarlı</li>
+                <li>Menemen Kavurmalı</li>
+                <li>Menemen Sucuklu</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h3 class="box-title">Sandviçler</h3>
+              <ul class="menu-list">
+                <li>Geleneksel</li>
+                <li>Spesiyal</li>
+                <li>Gurme</li>
+                <li>Bal Kaymak</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h3 class="box-title">Makarnalar</h3>
+              <ul class="menu-list">
+                <li>Anne Makarnası Sade Salçalı</li>
+                <li>Acılı Arrabbiata Soslu</li>
+                <li>Bolonez Soslu</li>
+                <li>Fettuccine Alfredo</li>
+                <li>Kıymalı Mantı</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="box">
+              <h3 class="box-title">Gözlemeler</h3>
+              <ul class="menu-list">
+                <li>Peynirli</li>
+                <li>Patatesli</li>
+                <li>Patatesli Kaşarlı</li>
+                <li>Kaşarlı</li>
+                <li>Sucuklu Kaşarlı</li>
+                <li>Kavurmalı Kaşarlı</li>
+              </ul>
+            </div>
+
+            <div class="box">
+              <h3 class="box-title">Öne Çıkanlar</h3>
+              <ul class="menu-list">
+                <li>Tercihe göre her çeşit kahvaltı hazırlanır</li>
+                <li>İsteğe göre gruplara öğlen ve akşam yemeği hazırlanır</li>
+                <li>Özel talebe göre menü hazırlanır</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="info-strip">
+            <h3 class="box-title">Günlük Hazırlanır</h3>
+            <p>
+              Tüm ürünlerimiz taze ve siparişe göre hazırlanır. Önaydın Peynircilik menüsü; tost,
+              sandviç, menemen, makarna ve gözleme seçenekleriyle günün her saatine uygundur.
+            </p>
+            <div class="tag-row">
+              <span class="tag">Taze Kahvaltılık</span>
+              <span class="tag">Siparişe Hazır</span>
+              <span class="tag">Alo Paket</span>
+              <span class="tag">Günlük Üretim</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p class="hours">Hafta İçi ve Cumartesi Günü Saat: 09:00 - 22:00 Arası</p>
+          <p class="hours">Pazar Günü Saat: 12:00 - 22:00 Arası</p>
+          <p class="address">75. Yıl Mah. Fevzi Çakmak Cad. No: 28 Sultangazi / İST.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="page back">
+      <div class="page-inner">
+        <div class="topbar">
+          <div class="brand">
+            <img class="brand-logo" src="https://hizliresim.net/get/T52q5R.png?v=1540443985" alt="Önaydın Peynircilik logo" />
+            <div class="tagline-top">20+ Yıllık Cello Dayı Tecrübesi İle</div>
+            <div class="slogan">“Kahvaltı Geleneği”</div>
+          </div>
+
+          <div class="contact">
+            <p class="label">Sipariş Hattı</p>
+            <p class="phone">0538 685 99 99</p>
+            <img class="contact-qr" src="https://hizliresim.net/get/4AmNlY.jpg" alt="WhatsApp ve arama QR" />
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="detail-columns">
+            <div class="detail-stack">
+              <div class="detail-box">
+                <h3 class="box-title">Tostlar</h3>
+                <ul class="detail-list">
+                  <li><span class="item-name">Kaşarlı:</span> Taze tost ekmeğinde bol kaşar peyniri ile hazırlanır.</li>
+                  <li><span class="item-name">Beyaz Peynirli:</span> Beyaz peynir ile sıcak servis edilir.</li>
+                  <li><span class="item-name">Sucuklu Kaşarlı:</span> Izgara sucuk ve eriyen kaşar peyniri ile hazırlanır.</li>
+                  <li><span class="item-name">Kavurmalı Kaşarlı:</span> Dana kavurma ve kaşar peyniri ile hazırlanır.</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h3 class="box-title">Sandviçler</h3>
+                <ul class="detail-list">
+                  <li><span class="item-name">Geleneksel:</span> Beyaz peynir, haşlanmış yumurta, acuka, zeytin ezmesi, domates ve salatalık ile hazırlanır.</li>
+                  <li><span class="item-name">Spesiyal:</span> Kaşar, çeçil peyniri, dana jambon, dana salam, hindi füme, haşlanmış yumurta, zeytin ezmesi ve muhammara içerir.</li>
+                  <li><span class="item-name">Gurme:</span> Tulum ve çoban peyniri, tereyağı ve bal ile hazırlanır.</li>
+                  <li><span class="item-name">Bal Kaymak:</span> Tatlı sandviç olarak bal ve kaymak ile hazırlanır.</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h3 class="box-title">Sıcaklar</h3>
+                <ul class="detail-list">
+                  <li><span class="item-name">Menemen Sade:</span> Domates, biber, tereyağı ve yumurta ile hazırlanır.</li>
+                  <li><span class="item-name">Menemen Kaşarlı:</span> Klasik menemen üzerine bol kaşar eklenir.</li>
+                  <li><span class="item-name">Menemen Kavurmalı:</span> Klasik menemen dana kavurma ile hazırlanır.</li>
+                  <li><span class="item-name">Menemen Sucuklu:</span> Sıcak menemen içine sucuk eklenerek hazırlanır.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="detail-stack">
+              <div class="detail-box">
+                <h3 class="box-title">Makarnalar</h3>
+                <ul class="detail-list">
+                  <li><span class="item-name">Anne Makarnası Sade Salçalı:</span> Ev usulü salçalı sos ile hazırlanır.</li>
+                  <li><span class="item-name">Acılı Arrabbiata Soslu:</span> Hafif acılı domates bazlı sos ile hazırlanır.</li>
+                  <li><span class="item-name">Bolonez Soslu:</span> Kıymalı bolonez sos ile servis edilir.</li>
+                  <li><span class="item-name">Fettuccine Alfredo:</span> Krema bazlı yumuşak sos ile hazırlanır.</li>
+                  <li><span class="item-name">Kıymalı Mantı:</span> Geleneksel kıymalı mantı olarak servis edilir.</li>
+                </ul>
+              </div>
+
+              <div class="detail-box">
+                <h3 class="box-title">Gözlemeler</h3>
+                <ul class="detail-list">
+                  <li><span class="item-name">Peynirli:</span> İnce açılmış hamur içinde peynir dolgusu ile hazırlanır.</li>
+                  <li><span class="item-name">Patatesli:</span> Baharatlı patates harcı ile hazırlanır.</li>
+                  <li><span class="item-name">Patatesli Kaşarlı:</span> Patates harcı ve kaşar peyniri ile hazırlanır.</li>
+                  <li><span class="item-name">Kaşarlı:</span> Bol kaşarlı klasik gözleme seçeneğidir.</li>
+                  <li><span class="item-name">Sucuklu Kaşarlı:</span> Sucuk ve kaşar ile hazırlanır.</li>
+                  <li><span class="item-name">Kavurmalı Kaşarlı:</span> Dana kavurma ve kaşar ile hazırlanır.</li>
+                </ul>
+              </div>
+
+              <div class="note-box">
+                <p>Tercihe göre her çeşit kahvaltı hazırlanır.</p>
+                <p>İsteğe göre grup arkadaşlara öğlen ve akşam yemeği hazırlanır.</p>
+                <p>Siz isteyin, dünya mutfağı gurme Şef Cello Dayı hazırlasın.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p class="hours">Hafta İçi ve Cumartesi Günü Saat: 09:00 - 22:00 Arası</p>
+          <p class="hours">Pazar Günü Saat: 12:00 - 22:00 Arası</p>
+          <p class="address">75. Yıl Mah. Fevzi Çakmak Cad. No: 28 Sultangazi / İST.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
